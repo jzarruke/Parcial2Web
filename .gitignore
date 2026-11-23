@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+.env
+*.log
+*.tsbuildinfo
+preparcial_2_usuarios_roles.pdf
