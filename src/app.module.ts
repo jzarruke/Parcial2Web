@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthenticationModule, type Duration } from '@nestjs/authentication';
+import { AuthorizationModule } from '@nestjs/authorization';
 import { UsersModule } from './users/users.module.js';
 import { RolesModule } from './roles/roles.module.js';
 import { AuthModule } from './auth/auth.module.js';
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module.js';
     },
     allowInMemoryStorage: true,
     }),
+    AuthorizationModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
