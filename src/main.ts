@@ -13,6 +13,7 @@ async function bootstrap() {
     .setDescription('Autenticación JWT y autorización por roles')
     .setVersion('1.0')
     .addBearerAuth()
+    .addSecurityRequirements('bearer')
     .build();
   SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, config));
 
