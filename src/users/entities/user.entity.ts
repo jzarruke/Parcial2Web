@@ -1,4 +1,5 @@
 import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Exclude } from 'class-transformer';
 import { Role } from '../../roles/entities/role.entity.js';
 
 @Entity({ name: 'users' })
@@ -7,7 +8,8 @@ export class User {
     id: string;
     @Column({ unique: true })
     email: string;
-    @Column({ select: false })
+    @Exclude()
+    @Column()
     password: string;
     @Column({ nullable: true })
     name: string;
