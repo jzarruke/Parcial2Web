@@ -1,6 +1,8 @@
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { Role } from '../../roles/entities/role.entity.js';
+import { ParkingSpot } from '../../parking-spots/entities/parking-spot.entity.js';
+import { Reservation } from '../../reservations/entities/reservation.entity.js';
 
 @Entity({ name: 'users' })
 export class User {
@@ -26,4 +28,8 @@ export class User {
         inverseJoinColumn: {name: 'role_id'}
     })
     roles: Role[];
+    @OneToMany(() => ParkingSpot, (spot) => spot)
+    supervisa: ParkingSpot[];
+    @OneToMany(() => Reservation, (reservations) => reservations)
+    reservations: Reservation[];
 }
