@@ -2,22 +2,24 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { RolesService } from './roles.service.js';
 import { CreateRoleDto } from './dto/create-role.dto.js';
 import { UpdateRoleDto } from './dto/update-role.dto.js';
+import { Can } from '@nestjs/authorization';
+import { RolePolicy } from './role.policy.js';
 
 @Controller('roles')
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 
-  @Post()
+  @Post() @Can(RolePolicy, 'create')
   create(@Body() createRoleDto: CreateRoleDto) {
     return this.rolesService.create(createRoleDto);
   }
 
-  @Get()
+  @Get() @Can(RolePolicy, 'list')
   findAll() {
     return this.rolesService.findAll();
   }
 
-  @Get(':id')
+  /*@Get(':id')
   findOne(@Param('id') id: string) {
     return this.rolesService.findOne(+id);
   }
@@ -30,5 +32,5 @@ export class RolesController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.rolesService.remove(+id);
-  }
+  }*/
 }
